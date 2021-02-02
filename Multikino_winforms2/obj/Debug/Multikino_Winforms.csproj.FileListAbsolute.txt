@@ -1,0 +1,36 @@
+E:\C++ Projekty\Multikino_Winforms\bin\Debug\Multikino_Winforms.exe.config
+E:\C++ Projekty\Multikino_Winforms\bin\Debug\Multikino_Winforms.exe
+E:\C++ Projekty\Multikino_Winforms\bin\Debug\Multikino_Winforms.pdb
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.csprojAssemblyReference.cache
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.Properties.Resources.resources
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.csproj.GenerateResource.cache
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.csproj.CoreCompileInputs.cache
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.exe
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.pdb
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.CELogowanie.resources
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.CEokno_Glowne.resources
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.Forms.CEwybierz_miejsca.resources
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.Forms.CEwybor_miejsca_klient.resources
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.Forms.CERealizacja_rezerwacji.resources
+E:\C++ Projekty\Multikino_Winforms\obj\Debug\Multikino_Winforms.Forms.CEzwrot.resources
+E:\C++ Projekty\Multikino_Winforms\bin\Debug\Database.mdf
+E:\C++ Projekty\Multikino_Winforms\bin\Debug\Database_log.ldf
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\bin\Debug\Multikino_Winforms.exe.config
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\bin\Debug\Multikino_Winforms.exe
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\bin\Debug\Multikino_Winforms.pdb
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.csprojAssemblyReference.cache
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.Forms.CERealizacja_rezerwacji.resources
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.Forms.CEwybierz_miejsca.resources
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.Forms.CEwybor_miejsca_klient.resources
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.Forms.CEzwrot.resources
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.CELogowanie.resources
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.CEokno_Glowne.resources
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.Properties.Resources.resources
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.csproj.GenerateResource.cache
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.csproj.CoreCompileInputs.cache
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.exe
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.pdb
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\bin\Debug\Multikino_Winforms.exe.manifest
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\bin\Debug\Multikino_Winforms.application
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.exe.manifest
+C:\Users\Kamil\Source\Repos\Multikino_winforms2\obj\Debug\Multikino_Winforms.application
