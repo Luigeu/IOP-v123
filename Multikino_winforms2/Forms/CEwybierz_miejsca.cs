@@ -57,7 +57,6 @@ namespace Multikino_Winforms.Forms
 
         }
 
-
         public void buttonArray()
         {
             int j = 1;
@@ -89,6 +88,7 @@ namespace Multikino_Winforms.Forms
                 j++;
             }   
         }
+
         public void btn_Click(object sender, EventArgs e)
         {
             
@@ -107,7 +107,6 @@ namespace Multikino_Winforms.Forms
                 Console.WriteLine("Button clicked");
                 ekran_wyb_klient.updateBtnColor(this.btn);
 
-                
                 label5.Text = aktualnaLiczbaBiletow.ToString();
 
         }
@@ -119,6 +118,11 @@ namespace Multikino_Winforms.Forms
             ObslugaOkien.idzDo("Okno Glowne Kasjera");
         }
 
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -126,19 +130,30 @@ namespace Multikino_Winforms.Forms
 
         private void btn_dalej_Click(object sender, EventArgs e)
         {
-            this.Close();
-            ekran_wyb_klient.Close();
-
+            if(Sprzedaz.sprzedaj_bilety(btn,l_nor,l_sen,l_stu))
+            {
+                //komunikat - dokanano zaupu 
+                label6.Text = "";
+                this.Close();
+                ekran_wyb_klient.Close();
+                ObslugaOkien.idzDo("Okno Glowne Kasjera");
+            }
+            else
+            {
+                //komunikat - nie wybrano wszystkich miejsc lub klientowi nie przysluguje znizka
+            } 
         }
 
         private void btnWprowadzIDklienta_Click(object sender, EventArgs e)
         {
             if(Sprzedaz.sprawdz_poprawnosc_podanego_id(textBox1.Text.ToString()))
             {
+                label6.Text = "Pomyslnie pobrano dane klienta";
                 if(Sprzedaz.sprawdz_czy_przysluguje_znizka(wybrano_sen, wybrano_stu))
                 {
                     richTextBox1.Clear();
                     richTextBox1.AppendText(Sprzedaz.oblicz_cene(this.l_nor, this.l_sen, this.l_stu));
+                    
                     //komunikat przyznano znizke
                 }
                 else
