@@ -116,6 +116,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprzedaz.cs" />
+    <Compile Include="Zwrot.cs" />
     <EmbeddedResource Include="Forms\CERealizacja_rezerwacji.resx">
       <DependentUpon>CERealizacja_rezerwacji.cs</DependentUpon>
     </EmbeddedResource>

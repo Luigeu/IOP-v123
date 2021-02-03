@@ -111,7 +111,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(272, 22);
             this.dateTimePicker1.TabIndex = 7;
-            this.dateTimePicker1.Value = new System.DateTime(2021, 2, 1, 22, 8, 54, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2021, 2, 2, 0, 0, 0, 0);
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // labelDzien
