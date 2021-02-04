@@ -32,7 +32,6 @@ namespace Multikino_Winforms
                 Lista_seansow.Items.Add(t[i]);
             }
             Lista_seansow.SetSelected(0,true);
-   
 
         }
         ~CEokno_Glowne()
@@ -177,6 +176,16 @@ namespace Multikino_Winforms
             {
                 comboStudenckie.Items.Add(i.ToString());
             }
+
+        }
+
+        private void labelDzien_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
 
         }
     }

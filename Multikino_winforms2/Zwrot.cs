@@ -18,7 +18,7 @@ namespace Multikino_Winforms
         internal static void przeszukaj_niezrealizowane_bilety_po_ID_klienta(string ID)
         {
             ID_klientaZwr = ID;
-            DateTime TimeNow = DateTime.Today;
+            DateTime TimeNow = DateTime.Now;
             string TimeNowS = TimeNow.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
 
             SqlConnection con = new SqlConnection(constring);
@@ -91,6 +91,7 @@ namespace Multikino_Winforms
                 "WHERE Bilety.ID = " + ID_biletu + "; ";
             SqlCommand cmd = new SqlCommand(q, con);
             cmd.ExecuteNonQuery();
+            con.Close();
         }
     }
 }

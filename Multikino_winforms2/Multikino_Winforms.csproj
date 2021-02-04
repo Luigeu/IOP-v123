@@ -115,6 +115,7 @@
     <Compile Include="ObslugaOkien.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Realizacja_rezerwacji.cs" />
     <Compile Include="Sprzedaz.cs" />
     <Compile Include="Zwrot.cs" />
     <EmbeddedResource Include="Forms\CERealizacja_rezerwacji.resx">

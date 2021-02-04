@@ -43,6 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Ldata
@@ -122,6 +123,7 @@
             this.labelDzien.Size = new System.Drawing.Size(12, 17);
             this.labelDzien.TabIndex = 8;
             this.labelDzien.Text = " ";
+            this.labelDzien.Click += new System.EventHandler(this.labelDzien_Click);
             // 
             // comboNormalne
             // 
@@ -191,6 +193,16 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Seniorskie";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(331, 396);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(12, 17);
+            this.label5.TabIndex = 16;
+            this.label5.Text = " ";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // CEokno_Glowne
             // 
             this.AccessibleDescription = "";
@@ -198,6 +210,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 450);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -238,5 +251,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

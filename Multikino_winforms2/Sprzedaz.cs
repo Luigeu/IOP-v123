@@ -240,7 +240,7 @@ namespace Multikino_Winforms
 
         internal static int podaj_ile_biletow_zakupil_aktywny_klient_w_przedziale_czasu_ustawionym_w_CCentrum_Wszechswiata()
         {
-            DateTime thisDay = DateTime.Today;
+            DateTime thisDay = DateTime.Now;
             DateTime StartDay = thisDay.AddDays(-CCentrum_Wszechswiata.podaj_w_jakim_przedziale_czasu_nalezy_nabyc_bilety_na_znizke());
             string StartDayS = StartDay.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
 
@@ -313,8 +313,8 @@ namespace Multikino_Winforms
 
         internal static void tworz_bilet_dla_znanego_klienta(int nr_miejsca, string typ_miej)
         {
-            DateTime thisDay = DateTime.Today;
-            string thisDayS = thisDay.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
+            DateTime thisDay = DateTime.Now;
+            string thisDayS = thisDay.ToString("yyyy'-'MM'-'dd' 'HH':'mm':'ss");
 
             SqlConnection con = new SqlConnection(constring);
             con.Open();
@@ -338,7 +338,7 @@ namespace Multikino_Winforms
 
         internal static void tworz_bilet_dla_nieznanego_klienta(int nr_miejsca, string typ_miej)
         {
-            DateTime thisDay = DateTime.Today;
+            DateTime thisDay = DateTime.Now;
             string thisDayS = thisDay.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss");
 
             SqlConnection con = new SqlConnection(constring);
