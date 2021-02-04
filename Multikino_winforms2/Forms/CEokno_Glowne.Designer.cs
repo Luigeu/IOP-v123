@@ -44,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnAktualizuj_znizke = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Ldata
@@ -77,7 +78,7 @@
             // 
             // Bzrealizuj_rezerwacje
             // 
-            this.Bzrealizuj_rezerwacje.Location = new System.Drawing.Point(459, 28);
+            this.Bzrealizuj_rezerwacje.Location = new System.Drawing.Point(491, 28);
             this.Bzrealizuj_rezerwacje.Name = "Bzrealizuj_rezerwacje";
             this.Bzrealizuj_rezerwacje.Size = new System.Drawing.Size(141, 42);
             this.Bzrealizuj_rezerwacje.TabIndex = 4;
@@ -87,7 +88,7 @@
             // 
             // Bprzyjmij_zwrot
             // 
-            this.Bprzyjmij_zwrot.Location = new System.Drawing.Point(459, 101);
+            this.Bprzyjmij_zwrot.Location = new System.Drawing.Point(491, 101);
             this.Bprzyjmij_zwrot.Name = "Bprzyjmij_zwrot";
             this.Bprzyjmij_zwrot.Size = new System.Drawing.Size(141, 42);
             this.Bprzyjmij_zwrot.TabIndex = 5;
@@ -112,7 +113,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(272, 22);
             this.dateTimePicker1.TabIndex = 7;
-            this.dateTimePicker1.Value = new System.DateTime(2021, 2, 2, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2021, 2, 4, 0, 0, 0, 0);
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // labelDzien
@@ -203,6 +204,16 @@
             this.label5.Text = " ";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
+            // btnAktualizuj_znizke
+            // 
+            this.btnAktualizuj_znizke.Location = new System.Drawing.Point(325, 28);
+            this.btnAktualizuj_znizke.Name = "btnAktualizuj_znizke";
+            this.btnAktualizuj_znizke.Size = new System.Drawing.Size(141, 42);
+            this.btnAktualizuj_znizke.TabIndex = 17;
+            this.btnAktualizuj_znizke.Text = "Aktualizuj znizke";
+            this.btnAktualizuj_znizke.UseVisualStyleBackColor = true;
+            this.btnAktualizuj_znizke.Click += new System.EventHandler(this.btnAktualizuj_znizke_Click);
+            // 
             // CEokno_Glowne
             // 
             this.AccessibleDescription = "";
@@ -210,6 +221,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 450);
+            this.Controls.Add(this.btnAktualizuj_znizke);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -252,5 +264,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnAktualizuj_znizke;
     }
 }

@@ -57,17 +57,17 @@ namespace Multikino_Winforms.Forms
         {
             if(string.IsNullOrWhiteSpace(listBox1.Text))
             {
-                // komunikat - nie wybrano biletu
+                MessageBox.Show("Nie wybrano biletu", "Informacje o zwrocie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             else if(Zwrot.zrealizuj_zwrot_biletu(listBox1.SelectedIndex))
             {
                 odswierz_liste_biletow();
-                //komunikat -- poprawnie zrealizowano zwrot
-
             }
             else
             {
-                // komunikat -- blad realizacji zwroti
+                MessageBox.Show("Blad realizacji zwrotu", "Informacje o zwrocie", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
         }
 
@@ -86,7 +86,7 @@ namespace Multikino_Winforms.Forms
                 if (tab.Length <= 0)
                 {
                     listBox1.Items.Clear();
-                    //jakieś powiadnomienie - nie znaleziono biletu o podanym ID
+                    MessageBox.Show("Nie znaleziono biletu o podanym ID", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace Multikino_Winforms.Forms
                 if (tab.Length <= 0)
                 {
                     listBox1.Items.Clear();
-                    //jakieś powiadnomienie - nie znaleziono klienta o podanym ID
+                    MessageBox.Show("Nie znaleziono klienta o podanym ID", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace Multikino_Winforms.Forms
             }
             else
             {
-                //komunikat - nie podano Id klienta ani Id biletu
+                MessageBox.Show("Nie podano ID klienta", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

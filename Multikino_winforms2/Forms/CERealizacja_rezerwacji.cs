@@ -28,7 +28,6 @@ namespace Multikino_Winforms.Forms
             listBox1.Items.Clear();
             if(Realizacja_rezerwacji.przeszukaj_seanse_dla_danego_klienta(textBox1.Text.ToString()))
             {
-                // komunikat_poprwanie zczytano dane klienta
                 string[] t = Realizacja_rezerwacji.drukuj_tablice_rezerwacji();
                 for (int i = 0; i < t.Length; i++)
                 {
@@ -40,8 +39,7 @@ namespace Multikino_Winforms.Forms
             }
             else
             {
-                label4.Text = "nie pobrao";//to mozna wywalic
-                //komunikat - bład wprowadzonych danych lub klient nie ma rezerwacji
+                MessageBox.Show("Bład wprowadzonych danych lub klient nie ma rezerwacji", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -66,12 +64,16 @@ namespace Multikino_Winforms.Forms
         {
             if(Realizacja_rezerwacji.zrealizuj_rezerwacje())
             {
-                //komunikat przeprowadzono
+
+                MessageBox.Show("Pomyslnie zrealizowano rezerwacje", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
             else
             {
-                //komunikat nie udao sie
+                MessageBox.Show( "Nie udalo sie zrealizowac rezerwacji", "Informacje",MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
+            this.button3.Click += button1_Click;
         }
     }
 }

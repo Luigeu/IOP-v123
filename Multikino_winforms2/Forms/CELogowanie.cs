@@ -28,14 +28,15 @@ namespace Multikino_Winforms
 
         private void BLogowanie_Click(object sender, EventArgs e)
         {
-
             if (Kasjer.sprawdz_dane(TID_Kasjera.Text, THaslo.Text))
             {
-                this.Close();
+                this.Hide();
+                this.ekran_glowny = new CEokno_Glowne();
+                this.ekran_glowny.Show();
             }
             else
             {
-                LInformacje_logowania.Text = "Blad logowania";
+                LInformacje_logowania.Text = "Niepoprawny login lub haslo. Sprobuj ponownie!";
             }
         }
 

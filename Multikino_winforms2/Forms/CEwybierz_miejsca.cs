@@ -27,13 +27,17 @@ namespace Multikino_Winforms.Forms
             this.l_nor = l_nor.ToString();
             this.l_sen = l_sen.ToString();
             this.l_stu = l_stu.ToString();
+
             if (l_sen != 0) wybrano_sen = true;
+            else wybrano_sen = false;
             if (l_stu != 0) wybrano_stu = true;
+            else wybrano_stu = false;
 
             this.liczbaBiletow = l_nor + l_sen + l_stu;
             this.aktualnaLiczbaBiletow = l_nor + l_sen + l_stu;
             richTextBox1.AppendText(Sprzedaz.oblicz_cene(this.l_nor, this.l_sen, this.l_stu));
-            
+
+            this.FormClosing += btn_cofnij_Click;
         }
 
         ~CEwybierz_miejsca()
@@ -54,6 +58,8 @@ namespace Multikino_Winforms.Forms
             ekran_wyb_klient.Visible = true;
 
             label5.Text = liczbaBiletow.ToString();
+
+            ekran_wyb_klient.updateBtnColor(this.btn);
 
         }
 
@@ -104,7 +110,6 @@ namespace Multikino_Winforms.Forms
                     btn1.BackColor = System.Drawing.Color.Green;
                     aktualnaLiczbaBiletow++;
                 }
-                Console.WriteLine("Button clicked");
                 ekran_wyb_klient.updateBtnColor(this.btn);
 
                 label5.Text = aktualnaLiczbaBiletow.ToString();
@@ -113,8 +118,10 @@ namespace Multikino_Winforms.Forms
     
         private void btn_cofnij_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
             ekran_wyb_klient.Close();
+            this.Dispose();
+            this.Close();
             ObslugaOkien.idzDo("Okno Glowne Kasjera");
         }
 
@@ -137,7 +144,7 @@ namespace Multikino_Winforms.Forms
         {
             if(Sprzedaz.sprzedaj_bilety(btn,l_nor,l_sen,l_stu))
             {
-                //komunikat - dokanano zaupu 
+                MessageBox.Show("Dokonano zakupu", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 label6.Text = "";
                 this.Close();
                 ekran_wyb_klient.Close();
@@ -145,31 +152,37 @@ namespace Multikino_Winforms.Forms
             }
             else
             {
-                //komunikat - nie wybrano wszystkich miejsc lub klientowi nie przysluguje znizka
+                MessageBox.Show("Błąd rezerwacji. \r\n \r\n  Mozliwa przyczyna: \r\n - nie wybrano wszystkich miejsc \r\n  - klientowi nie przysluguje znizka \r\n - bilety nie są już dostępne)", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } 
         }
 
         private void btnWprowadzIDklienta_Click(object sender, EventArgs e)
         {
-            if(Sprzedaz.sprawdz_poprawnosc_podanego_id(textBox1.Text.ToString()))
+            if (!string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                label6.Text = "Pomyslnie pobrano dane klienta";
-                if(Sprzedaz.sprawdz_czy_przysluguje_znizka(wybrano_sen, wybrano_stu))
+                if (Sprzedaz.sprawdz_poprawnosc_podanego_id(textBox1.Text.ToString()))
                 {
-                    richTextBox1.Clear();
-                    richTextBox1.AppendText(Sprzedaz.oblicz_cene(this.l_nor, this.l_sen, this.l_stu));
-                    
-                    //komunikat przyznano znizke
+                    label6.Text = "Pomyslnie pobrano dane klienta";
+                    if (Sprzedaz.sprawdz_czy_przysluguje_znizka(wybrano_sen, wybrano_stu))
+                    {
+                        richTextBox1.Clear();
+                        richTextBox1.AppendText(Sprzedaz.oblicz_cene(this.l_nor, this.l_sen, this.l_stu));
+
+                        label6.Text += "\r\nGratulacje!! Przysluguje ci znizka.";
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie przysluguje znizka, wypad", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                 }
                 else
                 {
-                    //jakis komunikat w stylu nie przysluguje znizka, klienice co oszukujesz, wypad
+                    MessageBox.Show("Nie ma takiego klienta", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else
-            {
-                //jakiś komunika typu  nie ma takiego klienta
-            }
+            else { MessageBox.Show("Nie podano id klienta", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         }
 
     }

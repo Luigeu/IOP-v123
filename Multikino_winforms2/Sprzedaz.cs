@@ -22,23 +22,29 @@ namespace Multikino_Winforms
         static bool Klient_jest_aktywny;
         static DataTable dane_aktywnego_klienta;
         static bool przysluguje_znizka;
- 
+        static DataTable seanse;
+        static int nr_ind;
+
         internal static string[] przeszukaj_seanse(string data)
         {
             string d = data;
+            string dn = DateTime.Now.ToString("yyyy'-'MM'-'dd' 'HH':'mm':'ss");
+
             SqlConnection con = new SqlConnection(constring);
             con.Open();
             string q = "select * from  Seanse  " +
                 "inner join WersjeFilmów on  WersjeFilmów.ID = Seanse.ID_WersjiFilmu " +
                 "inner join Filmy on Filmy.ID = WersjeFilmów.ID_Filmu " +
                 "where Seanse.ID_Kina =  " + CCentrum_Wszechswiata.wypisz_id_kina() +
-                "AND CONVERT(VARCHAR(25), Seanse.DataS, 126) LIKE '" + d + "%' ";
+                "AND CONVERT(VARCHAR(25), Seanse.DataS, 126) LIKE '" + d + "%' " +
+                "AND Seanse.DataS >= '" + dn + "' ";
             SqlCommand cmd = new SqlCommand(q, con);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable set = new DataTable();
             //adapter.ToString();
             //return adapter.ToString();
             adapter.Fill(set);
+            seanse = set;
 
             string[] t = Sprzedaz.laczenie_tablicy(set);
             Sprzedaz.tabela_seansow = t;
@@ -53,7 +59,7 @@ namespace Multikino_Winforms
             string[] t;
             string s;
 
-            if (table.Rows.Count <= 1)
+            if (table.Rows.Count <= 0)
             {
                 t = new string[1];
                 t[0] = "Brak seansów w wybranum dniu";
@@ -76,24 +82,20 @@ namespace Multikino_Winforms
 
         internal static int[] tworzenie_tablicy_ID_seansow(DataTable table)
         {
-            tabela_ID_seansow = new int[table.Rows.Count];
+            int[] tabela_ID_s = new int[table.Rows.Count];
             for (int i = 0; i < table.Rows.Count; i++)
             {
-               tabela_ID_seansow[i] = (int) table.Rows[i][0];
+               tabela_ID_s[i] = (int) table.Rows[i][0];
             }
-            return tabela_ID_seansow;
+            return tabela_ID_s;
         }
 
         internal static bool pobierz_dane_o_seansie(string wybrany_seans_z_listy, string l_nor, string l_sen, string l_stu)
         {
-            int ID=0;
-            for(int i=0; i< tabela_ID_seansow.Length; i++)
-            {
-                if(tabela_ID_seansow[i]== (int.Parse(wybrany_seans_z_listy)+1))
-                {
-                    ID = i;
-                }
-            }
+            nr_ind = int.Parse(wybrany_seans_z_listy);
+
+            int ID= int.Parse(wybrany_seans_z_listy);
+
 
             ID_seansu = tabela_ID_seansow[ID];
             int suma_miejsc = int.Parse(l_nor) + int.Parse(l_sen) + int.Parse(l_stu);
@@ -146,7 +148,7 @@ namespace Multikino_Winforms
             adapter.Fill(set);
             cena_podstawowa_miejsca = int.Parse(set.Rows[0][4].ToString());
 
-            int procent_znizki; //ile procent ceny trzeba zaplacic
+            float procent_znizki; //ile procent ceny trzeba zaplacic
 
             if(Klient_jest_aktywny)
             {
@@ -157,10 +159,16 @@ namespace Multikino_Winforms
                 procent_znizki = 100;
             }
 
-            int cena_za_normalny = cena_podstawowa_miejsca * procent_znizki/100;
-            int cena_za_seniorski = cena_podstawowa_miejsca * CCentrum_Wszechswiata.podaj_znizke_dla_seniora() / 100 * procent_znizki / 100;
-            int cena_za_studencki = cena_podstawowa_miejsca * CCentrum_Wszechswiata.podaj_znizke_dla_studenta() / 100 * procent_znizki / 100;
-            
+            float suma_znizek = procent_znizki / 100 *
+                            CCentrum_Wszechswiata.podaj_procent_ceny_w_dniu(seanse.Rows[nr_ind][5]) / 100 *
+                            CCentrum_Wszechswiata.podaj_procent_ceny_za_kategorie_filmy(seanse.Rows[nr_ind][13].ToString()) / 100 *
+                            CCentrum_Wszechswiata.podaj_procent_ceny_za_wersje_filmy(seanse.Rows[nr_ind][8].ToString()) / 100;
+
+
+            float cena_za_normalny = cena_podstawowa_miejsca * suma_znizek;
+            float cena_za_seniorski = cena_podstawowa_miejsca * CCentrum_Wszechswiata.podaj_znizke_dla_seniora() / 100 * suma_znizek;
+            float cena_za_studencki = cena_podstawowa_miejsca * CCentrum_Wszechswiata.podaj_znizke_dla_studenta() / 100 * suma_znizek;
+
             text = "Wybrano:" + Environment.NewLine;
             if(int.Parse(l_nor) != 0)
             {
@@ -207,27 +215,31 @@ namespace Multikino_Winforms
 
         internal static bool sprawdz_czy_przysluguje_znizka(bool seni, bool stud)
         {
-            if(seni)
+            przysluguje_znizka = true;
+            if (seni)
             {
-                if( !dane_aktywnego_klienta.Rows[0][3].ToString().Equals("1") )
+                if( !dane_aktywnego_klienta.Rows[0][3].ToString().Equals("True"))
                 {
                     przysluguje_znizka = false;
-                    return false;
+                    Console.WriteLine(dane_aktywnego_klienta.Rows[0][3].ToString());
+                    return przysluguje_znizka;
                 }
             }
             if(stud)
             {
-                if( !dane_aktywnego_klienta.Rows[0][4].ToString().Equals("1") )
+                if(!dane_aktywnego_klienta.Rows[0][4].ToString().Equals("True"))
                 {
                     przysluguje_znizka = false;
-                    return false;
+                    Console.WriteLine(dane_aktywnego_klienta.Rows[0][4].ToString());
+                    return przysluguje_znizka;
                 }
             }
-            przysluguje_znizka = true;
-            return true;
+
+
+            return przysluguje_znizka;
         }
 
-        internal static int oblicz_znizke()
+        internal static float oblicz_znizke()
         {
             int ile_biletow_zakupiono = podaj_ile_biletow_zakupil_aktywny_klient_w_przedziale_czasu_ustawionym_w_CCentrum_Wszechswiata();
 
@@ -246,7 +258,9 @@ namespace Multikino_Winforms
 
             SqlConnection con = new SqlConnection(constring);
             con.Open();
-            string q = "select * from Bilety where ID_Klienta = " + ID_klienta + "and DataZakupu > '" + StartDayS + "'";
+            string q = " select * from Bilety " +
+                "inner join Seanse on Bilety.ID_Seansu = Seanse.ID" +
+                " where ID_Klienta = " + ID_klienta + "and DataS > '" + StartDayS + "'";
             SqlCommand cmd = new SqlCommand(q, con);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable set = new DataTable();
@@ -265,13 +279,14 @@ namespace Multikino_Winforms
                  if(!przysluguje_znizka) return false;
             }
 
-            if(Sprawdz_czy_wybrano_wszystkie_miejsca(btn, suma_m))
+            if(Sprawdz_czy_wybrano_wszystkie_miejsca(btn, suma_m) && sprawdzenie_podwojnej_rezerwacji(btn))
             {
                 int pom1 = 1;
                 for (int i = 0; i < btn.Length; i++)
                 {
                     if (btn[i].BackColor == System.Drawing.Color.Blue)
                     {
+
                         if (Klient_jest_aktywny)
                         {
                             if(pom1 <= int.Parse(l_nor) && int.Parse(l_nor) > 0) tworz_bilet_dla_znanego_klienta(i,"normalne");
@@ -285,6 +300,8 @@ namespace Multikino_Winforms
                             if (pom1 <= suma_m && int.Parse(l_stu) > 0) tworz_bilet_dla_nieznanego_klienta(i, "studencki");
                         }
                         pom1++;
+
+                        
                     }
                 }
                 ID_seansu = 0;
@@ -359,6 +376,27 @@ namespace Multikino_Winforms
             cmd = new SqlCommand(q, con);
             cmd.ExecuteNonQuery();
             con.Close();
+        }
+
+        internal static bool sprawdzenie_podwojnej_rezerwacji(Button[] btn)
+        {
+            SqlConnection con = new SqlConnection(constring);
+            con.Open();
+            string q = "select * from Miejsca where ID_Seansu = " + ID_seansu;
+            SqlCommand cmd = new SqlCommand(q, con);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable set = new DataTable();
+            adapter.Fill(set);
+            con.Close();
+
+            for (int i = 0; i < btn.Length; i++)
+            {
+                if (btn[i].BackColor == System.Drawing.Color.Blue)
+                {
+                    if (set.Rows[i][7].ToString().Equals("zajete")) return false;
+                }
+            }
+            return true;
         }
     }
 }

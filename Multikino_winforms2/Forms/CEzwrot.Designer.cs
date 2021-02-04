@@ -51,7 +51,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(411, 12);
+            this.button1.Location = new System.Drawing.Point(322, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(149, 78);
             this.button1.TabIndex = 1;
@@ -73,7 +73,7 @@
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(12, 118);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(574, 212);
+            this.listBox1.Size = new System.Drawing.Size(656, 212);
             this.listBox1.TabIndex = 3;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -89,7 +89,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(474, 342);
+            this.button3.Location = new System.Drawing.Point(565, 342);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(103, 84);
             this.button3.TabIndex = 7;
@@ -128,7 +128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 450);
+            this.ClientSize = new System.Drawing.Size(680, 450);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);

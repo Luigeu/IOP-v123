@@ -18,6 +18,7 @@ namespace Multikino_Winforms
         private CEwybierz_miejsca ekran_wyb_kasjer;
         private CEzwrot ekran_zwrotu;
         private CERealizacja_rezerwacji ekran_rezerwacji;
+        private okno_znizki ekran_znizki;
         
         public CEokno_Glowne()
         {
@@ -25,7 +26,7 @@ namespace Multikino_Winforms
             this.FormClosing += Form_FormClosing;
             totalSeats = 50;
 
-            string[] t = Sprzedaz.przeszukaj_seanse(DateTime.Now.ToString("yyyy-MM-dd hh:mm"));
+            string[] t = Sprzedaz.przeszukaj_seanse(DateTime.Now.ToString("yyyy-MM-dd"));
 
             for (int i = 0; i < t.Length; i++)
             {
@@ -71,22 +72,22 @@ namespace Multikino_Winforms
 
         private void Bwybor_miejsc_Click(object sender, EventArgs e)
         {
-            if(Lista_seansow.SelectedItem.ToString().Equals("Brak seansów w wybranum dniu"))
-            { 
-                ///tutaj trzeba wstawić jakiś komunikat typu "Nie wybrano seansów"
+            if (Lista_seansow.SelectedItem.ToString().Equals("Brak seansów w wybranum dniu"))
+            {
+                MessageBox.Show("Nie wybrano seansów", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (Sprzedaz.pobierz_dane_o_seansie(Lista_seansow.SelectedIndex.ToString(), (comboNormalne.Text.ToString()),
                 (comboSeniorskie.Text.ToString()), (comboStudenckie.Text.ToString())) == false)
-                 {
-                    ///tutaj trzeba wstawić jakiś komunikat typu "Nie ma wystarczającej ilosci miejsc"
-                 }
-                else
-                {
-                    this.ekran_wyb_kasjer = new CEwybierz_miejsca(int.Parse(comboNormalne.Text), int.Parse(comboSeniorskie.Text), int.Parse(comboStudenckie.Text));
-                    this.Visible = false;
-                    ekran_wyb_kasjer.Show();
-                }
-             
+            {
+                MessageBox.Show("Nie ma wystarczającej ilosci miejsc", "Informacje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                this.ekran_wyb_kasjer = new CEwybierz_miejsca(int.Parse(comboNormalne.Text), int.Parse(comboSeniorskie.Text), int.Parse(comboStudenckie.Text));
+                this.Visible = false;
+                ekran_wyb_kasjer.Show();
+            }
+
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -135,12 +136,12 @@ namespace Multikino_Winforms
         {
             comboNormalne.Items.Clear();
             comboSeniorskie.Items.Clear();
-            for (int i = 1; i <= totalSeats-int.Parse(comboStudenckie.Text)-int.Parse(comboSeniorskie.Text); i++)
+            for (int i = 0; i <= totalSeats-int.Parse(comboStudenckie.Text)-int.Parse(comboSeniorskie.Text); i++)
             {
                 comboNormalne.Items.Add(i.ToString());
             }
 
-            for (int i = 1; i <= totalSeats - int.Parse(comboStudenckie.Text) - int.Parse(comboNormalne.Text); i++)
+            for (int i = 0; i <= totalSeats - int.Parse(comboStudenckie.Text) - int.Parse(comboNormalne.Text); i++)
             {
                 comboSeniorskie.Items.Add(i.ToString());
             }
@@ -151,12 +152,12 @@ namespace Multikino_Winforms
         {
             comboStudenckie.Items.Clear();
             comboSeniorskie.Items.Clear();
-            for (int i = 1; i <= totalSeats - int.Parse(comboNormalne.Text) - int.Parse(comboSeniorskie.Text); i++)
+            for (int i = 0; i <= totalSeats - int.Parse(comboNormalne.Text) - int.Parse(comboSeniorskie.Text); i++)
             {
                 comboStudenckie.Items.Add(i.ToString());
             }
 
-            for (int i = 1; i <= totalSeats - int.Parse(comboStudenckie.Text) - int.Parse(comboNormalne.Text); i++)
+            for (int i = 0; i <= totalSeats - int.Parse(comboStudenckie.Text) - int.Parse(comboNormalne.Text); i++)
             {
                 comboSeniorskie.Items.Add(i.ToString());
             }
@@ -167,12 +168,12 @@ namespace Multikino_Winforms
         {
             comboNormalne.Items.Clear();
             comboStudenckie.Items.Clear();
-            for (int i = 1; i <= totalSeats - int.Parse(comboSeniorskie.Text) - int.Parse(comboStudenckie.Text); i++)
+            for (int i = 0; i <= totalSeats - int.Parse(comboSeniorskie.Text) - int.Parse(comboStudenckie.Text); i++)
             {
                 comboNormalne.Items.Add(i.ToString());
             }
 
-            for (int i = 1; i <= totalSeats - int.Parse(comboSeniorskie.Text) - int.Parse(comboNormalne.Text); i++)
+            for (int i = 0; i <= totalSeats - int.Parse(comboSeniorskie.Text) - int.Parse(comboNormalne.Text); i++)
             {
                 comboStudenckie.Items.Add(i.ToString());
             }
@@ -187,6 +188,12 @@ namespace Multikino_Winforms
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAktualizuj_znizke_Click(object sender, EventArgs e)
+        {
+            ekran_znizki = new okno_znizki();
+            ekran_znizki.ShowDialog();
         }
     }
 

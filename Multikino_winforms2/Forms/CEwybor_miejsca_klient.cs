@@ -57,10 +57,7 @@ namespace Multikino_Winforms.Forms
             for (int i = 0; i < size; i++)
             {
                 this.btnKlient[i].BackColor = btnAr[i].BackColor;
-                Console.WriteLine(i);
-
             }
-            Console.WriteLine("color changed");
         }
 
         private void label1_Click(object sender, EventArgs e)

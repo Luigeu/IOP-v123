@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multikino_Winforms.exe" size="45024">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multikino_Winforms.exe" size="54240">
       <assemblyIdentity name="Multikino_Winforms" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gK6wzzwiaHNIzf0SYrVmnN+AjoOLqV3gghDLyDtXkP4=</dsig:DigestValue>
+        <dsig:DigestValue>fh6BlD1WdcI4/8S7uHqwly8DDCKR8T2sIiO+gLcaglM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

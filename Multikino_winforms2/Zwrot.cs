@@ -42,10 +42,15 @@ namespace Multikino_Winforms
            
             for (int i = 0; i < tab.Length; i++)
             {
+                string s3 = lista_niezrealizowanych_seansow_danego_klienta.Rows[i][6].ToString();
+                char ch = s3[0];
+                ch = (Char)(Convert.ToUInt16(ch) + 16);
                 string s2 = lista_niezrealizowanych_seansow_danego_klienta.Rows[i][14].ToString();
                 string s = s2 + "    " + lista_niezrealizowanych_seansow_danego_klienta.Rows[i][26].ToString() + "    " 
                     + lista_niezrealizowanych_seansow_danego_klienta.Rows[i][22].ToString() + "    "
-                    + lista_niezrealizowanych_seansow_danego_klienta.Rows[i][8].ToString();
+                    + lista_niezrealizowanych_seansow_danego_klienta.Rows[i][8].ToString() + "  " 
+                    +lista_niezrealizowanych_seansow_danego_klienta.Rows[i][5].ToString() +
+                    ch;
                 tab[i] = s;
             }
             return tab;
